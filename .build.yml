@@ -1,0 +1,35 @@
+image: alpine/latest
+packages:
+  - curl
+  - nodejs
+  - shellcheck
+sources:
+  - https://git.sr.ht/~rasch/shell-emoji
+environment:
+  project: shell-emoji
+secrets:
+  - 46f739e5-4538-45dd-a79f-bf173b7a2ed9 # CI/CD token
+tasks:
+  - build: |
+      cd "$project"
+      node generate.js > "$project"
+  - validate: |
+      cd "$project"
+      shellcheck --shell=sh "$project"
+      . "$project"
+      test "$e_tada $e_melting_face" = '🎉 🫠' || exit 1
+  - stop_if_not_release: |
+      cd "$project"
+      git describe --exact-match HEAD || complete-build
+  - release: |
+      cd "$project"
+      tag=$(git describe --exact-match HEAD)
+      mv "$project" "$project-$tag"
+      gzip -9 "$project-$tag"
+      set +x
+      . ~/.env
+      curl --silent \
+        --request POST \
+        --header "Authorization: token $token" \
+        --form "file=@$project-$tag.gz" \
+        "https://git.sr.ht/api/repos/$project/artifacts/$tag"
