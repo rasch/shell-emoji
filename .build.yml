@@ -17,7 +17,7 @@ tasks:
       cd "$project"
       shellcheck --shell=sh "$project"
       . "$project"
-      test "$e_tada $e_melting_face" = '🎉 🫠' || exit 1
+      test "$e_tada $e_melting_face" = '🎉 🫠'
   - stop_if_not_release: |
       cd "$project"
       git describe --exact-match HEAD || complete-build
