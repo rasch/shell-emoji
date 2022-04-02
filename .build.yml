@@ -8,7 +8,7 @@ sources:
 environment:
   project: shell-emoji
 secrets:
-  - 46f739e5-4538-45dd-a79f-bf173b7a2ed9 # CI/CD token
+  - 7265326e-1412-40c0-9717-cd89608acdd0 # CI/CD token
 tasks:
   - build: |
       cd "$project"
