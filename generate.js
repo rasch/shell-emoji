@@ -39,7 +39,7 @@ const nameToShellVariable = compose(
 
 // transform :: {unified: String, short_name: String} => String
 const transform = data =>
-  `e_${nameToShellVariable(data.short_name)}='${emojiFromCodepoints(data.unified)}'`
+  `export e_${nameToShellVariable(data.short_name)}='${emojiFromCodepoints(data.unified)}'`
 
 https
   .get(emojiData, res => {
