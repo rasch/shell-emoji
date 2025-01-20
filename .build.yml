@@ -8,7 +8,7 @@ sources:
 environment:
   project: shell-emoji
 secrets:
-  - 5fa223dd-4b6c-4e5a-93d8-8c6ce1b975b6 # sourcehut builds token
+  - 675dc558-e359-4a79-b98d-eae973cfe0d3 # sourcehut builds token
 tasks:
   - build: |
       cd "$project"
