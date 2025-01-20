@@ -17,11 +17,11 @@ git commit -m "$e_tada Initial commit"
 
 ```sh
 # download emoji variables
-curl -O https://git.sr.ht/~rasch/shell-emoji/refs/download/0.1.0/shell-emoji-0.1.0.gz
+curl -O https://git.sr.ht/~rasch/shell-emoji/refs/download/v0.2.0/shell-emoji-v0.2.0.gz
 
 # decompress
-gunzip shell-emoji-0.1.0.gz
+gunzip shell-emoji-v0.2.0.gz
 
 # source the file (put this line in ~/.bashrc or similar after testing)
-. shell-emoji-0.1.0
+. shell-emoji-v0.2.0
 ```
