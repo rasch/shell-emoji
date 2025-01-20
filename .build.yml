@@ -1,6 +1,6 @@
 image: alpine/latest
 packages:
-  - curl
+  - hut
   - nodejs
   - shellcheck
 sources:
@@ -8,7 +8,7 @@ sources:
 environment:
   project: shell-emoji
 secrets:
-  - 4556b50a-f3a4-4bba-a8a9-172b2978564f # sourcehut builds token
+  - 7cc84f0d-059f-4477-accf-383ae72a4b68 # hut config
 tasks:
   - build: |
       cd "$project"
@@ -26,10 +26,4 @@ tasks:
       tag=$(git describe --exact-match HEAD)
       mv "$project" "$project-$tag"
       gzip -9 "$project-$tag"
-      set +x
-      . ~/.env
-      curl --silent \
-        --request POST \
-        --header "Authorization: token $token" \
-        --form "file=@$project-$tag.gz" \
-        "https://git.sr.ht/api/repos/$project/artifacts/$tag"
+      hut git artifact upload --rev $tag $project-$tag.gz
